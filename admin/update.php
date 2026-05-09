@@ -114,6 +114,11 @@ if (!$place) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تحديث المحتوى</title>
+    <script>
+    if (localStorage.getItem("nightMode") === "1") {
+        document.documentElement.classList.add("night");
+    }
+    </script>
     <link rel="stylesheet" href="admin.css">
 </head>
 <body>
