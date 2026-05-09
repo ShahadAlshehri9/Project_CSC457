@@ -1,7 +1,7 @@
 // تفعيل الوضع الليلي وحفظه في المتصفح
 function toggleNight() {
-    document.body.classList.toggle("night");
-    const isNight = document.body.classList.contains("night");
+    document.documentElement.classList.toggle("night");
+    const isNight = document.documentElement.classList.contains("night");
     try {
         localStorage.setItem("nightMode", isNight ? "1" : "0");
     } catch (e) {}
@@ -9,18 +9,13 @@ function toggleNight() {
     if (btn) btn.textContent = isNight ? "الوضع النهاري" : "الوضع الليلي";
 }
 
-// استرجاع الوضع المحفوظ عند تحميل الصفحة
-(function () {
-    try {
-        if (localStorage.getItem("nightMode") === "1") {
-            document.body.classList.add("night");
-            window.addEventListener("DOMContentLoaded", function () {
-                const btn = document.getElementById("nightBtn");
-                if (btn) btn.textContent = "الوضع النهاري";
-            });
-        }
-    } catch (e) {}
-})();
+// تحديث نص الزر عند تحميل الصفحة
+window.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("nightBtn");
+    if (btn && document.documentElement.classList.contains("night")) {
+        btn.textContent = "الوضع النهاري";
+    }
+});
 
 // فلترة المعرض
 function filterGallery() {
@@ -28,7 +23,6 @@ function filterGallery() {
     const category = document.getElementById("categorySelect").value;
     const cards = document.querySelectorAll(".place-card");
     let visible = 0;
-
     cards.forEach(function (card) {
         const name = (card.dataset.name || "").toLowerCase();
         const desc = (card.dataset.desc || "").toLowerCase();
@@ -42,7 +36,6 @@ function filterGallery() {
             card.style.display = "none";
         }
     });
-
     const counter = document.getElementById("resultCount");
     if (counter) counter.textContent = "عدد النتائج: " + visible;
 }
