@@ -19,6 +19,7 @@ $result = $conn->query("SELECT * FROM places ORDER BY id ASC");
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة تحكم المشرف</title>
     <link rel="stylesheet" href="admin.css">
     <script src="../script.js"></script>
